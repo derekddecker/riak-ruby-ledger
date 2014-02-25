@@ -121,7 +121,6 @@ module Riak::CRDT
       total = self.unique_transactions().values.inject(0, &:+)
 
       self.counts.values.each do |a|
-        #puts a.inspect
         total += a["total"]
       end
 
@@ -147,7 +146,7 @@ module Riak::CRDT
     end
 
     def recently_merged?(actor, txn)
-      self.counts[actor]["merge_history"].include?(txn)
+      self.counts[actor]["merge_history"].include?(txn) if self.counts[actor].has_key?('merge_history')
     end
 
     # Combine all actors' data
