@@ -45,7 +45,7 @@ module Riak::CRDT
         gc.counts[a] = Hash.new() unless gc.counts[a]
         gc.counts[a]["total"] = values["total"]
         gc.counts[a]["txns"] = TransactionArray.new(values["txns"])
-        gc.counts[a]["merge_history"] = values["merge_history"]
+        gc.counts[a]["merge_history"] = values["merge_history"] || []
       end
 
       return gc
